@@ -1,0 +1,27 @@
+services:
+  postgresql:
+    image: sibedge/postgres-plv8
+    environment:
+      POSTGRES_USER: pg
+      POSTGRES_PASSWORD: pg
+      POSTGRES_DB: db
+      PGDATA: /data/postgres
+    volumes:
+      - db_data:/data/postgres
+
+  app:
+    build:
+      context: .
+      dockerfile: images/app/Dockerfile
+    command: ["bun", "--watch", "index.ts"]
+    depends_on:
+      - postgresql
+    volumes:
+      - ./index.ts:/app/index.ts
+      - ./src/:/app/src/
+      - ./plv8ify-dist/:/app/plv8ify-dist/
+    ports:
+      - "1324:5000"
+
+volumes:
+  db_data:

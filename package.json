@@ -1,0 +1,26 @@
+{
+  "name": "pg-plv-demo",
+  "scripts": {
+    "dev": "bun --watch index.ts",
+    "start": "bun index.ts",
+    "init": "bun index.ts --init"
+  },
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/pg": "^8.11.5",
+    "@types/retry": "^0.12.5"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "joi": "^17.13.0",
+    "pg": "^8.11.5",
+    "retry": "^0.13.1",
+    "tasuku": "^2.0.1",
+    "url": "^0.11.3",
+    "zod": "^3.23.4"
+  }
+}

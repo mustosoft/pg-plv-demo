@@ -1,0 +1,10 @@
+{
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "prettier.configPath": ".vscode/.prettierrc",
+    "editor.indentSize": 4,
+    "editor.detectIndentation": false,
+    "editor.guides.indentation": false,
+    "editor.rulers": [
+        100
+    ]
+}

@@ -1,0 +1,20 @@
+services:
+  postgresql:
+    image: sibedge/postgres-plv8
+    environment:
+      POSTGRES_USER: pg
+      POSTGRES_PASSWORD: pg
+      POSTGRES_DB: db
+      PGDATA: /data/postgres
+    volumes:
+      - db_data:/data/postgres
+
+  app:
+    build:
+      context: .
+      dockerfile: images/app/Dockerfile
+    depends_on:
+      - postgresql
+
+volumes:
+  db_data:
