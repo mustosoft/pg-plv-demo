@@ -4,8 +4,8 @@ WORKDIR /app
 
 ADD package.json .
 ADD bun.lockb .
-ADD src/ .
-ADD plv8ify-dist/ .
+ADD src/ ./src
+ADD plv8ify-dist/ ./plv8ify-dist
 ADD index.ts .
 
 RUN bun install
