@@ -18,7 +18,7 @@ async function init() {
     await task('Generating SQL scripts', async ({ task }) => {
         const tasks: Array<string> = [];
 
-        await $`rm -rf plv8ify-dist/*.sql`.quiet();
+        await $`rm -rf plv8ify-dist/*.sql`.quiet().nothrow();
 
         for await (let file of $`ls src/backend`.lines()) {
             file.length && tasks.push(file);
