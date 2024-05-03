@@ -28,18 +28,12 @@ export default async function translator(
         throw new BadRequestError('Invalid JSON payload');
     }
 
-    //
-    console.log({ method, path, payload });
-
     const result = await db.query(
         'SELECT sqlRouter($1 ::VARCHAR, $2 ::VARCHAR, $3 ::JSONB);',
         [method, path, payload],
     );
 
     res = result.rows[0]['sqlrouter'];
-
-    //
-    console.log('result.rows:', result.rows);
 
     return new Response(JSON.stringify(res), {
         status: res?.status,

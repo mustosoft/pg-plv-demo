@@ -1,9 +1,11 @@
 #!/usr/bin/env bun
 
+import { $ } from 'bun';
+import { parse as parseURL } from 'url';
+import task from 'tasuku';
+
 import pDB from './src/driver/db';
 import translator from './src/driver/translator';
-import { $ } from 'bun';
-import task from 'tasuku';
 
 const dbCred = {
     host: 'postgresql',
@@ -88,6 +90,15 @@ async function main(): Promise<void> {
         development: false,
         port: process.env.PORT || 5000,
         async fetch(req) {
+            const { method, url } = req;
+            const path = parseURL(url, true).path;
+
+            console.log('Incoming request:', {
+                method,
+                url,
+                path,
+            });
+
             return translator(req, db).catch((err) => {
                 return new Response(
                     JSON.stringify({
